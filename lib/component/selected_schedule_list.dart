@@ -17,10 +17,12 @@ class _SelectedScheduleListState extends State<SelectedScheduleList> {
         itemCount: widget.scheduleList?.length,
         itemBuilder: (context, index) {
           return ScheduleCard(
+            isEventList: false,
+            year: widget.scheduleList?[index].year,
             month: widget.scheduleList?[index].month,
             day: widget.scheduleList?[index].day,
-            startTime: widget.scheduleList?[index].startTime,
-            endTime: widget.scheduleList?[index].endTime,
+            // startTime: widget.scheduleList?[index].startTime,
+            // endTime: widget.scheduleList?[index].endTime,
             content: widget.scheduleList?[index].content.toString(),
           );
         },

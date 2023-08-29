@@ -1,4 +1,4 @@
-package com.example.joanda0
+package jo.dkeod.calendar
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "704109138893",
+    "project_id": "joanda0",
+    "storage_bucket": "joanda0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:704109138893:android:99db311fcf88d282346a84",
+        "android_client_info": {
+          "package_name": "com.example.joanda0"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "704109138893-4ph27tu15bijsqcb88lrap5rnaoeu2ek.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2q5KypDQho3dpFAAQLL4-WbghaSHJGb4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "704109138893-4ph27tu15bijsqcb88lrap5rnaoeu2ek.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "704109138893-ba21e6miloh8lo5rsd7cn8h3acalgd2o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.joanda0.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:704109138893:android:4d04346c3d0189f6346a84",
+        "android_client_info": {
+          "package_name": "jo.dkeod.calendar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "704109138893-4ph27tu15bijsqcb88lrap5rnaoeu2ek.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2q5KypDQho3dpFAAQLL4-WbghaSHJGb4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "704109138893-4ph27tu15bijsqcb88lrap5rnaoeu2ek.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "704109138893-ba21e6miloh8lo5rsd7cn8h3acalgd2o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.joanda0.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

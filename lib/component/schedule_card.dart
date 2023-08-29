@@ -2,17 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:joanda0/const/colors.dart';
 
 class ScheduleCard extends StatelessWidget {
+  final int? year;
   final int? month;
   final int? day;
-  final int? startTime;
-  final int? endTime;
+  // final int? startTime;
+  // final int? endTime;
   final String? content;
+  final bool isEventList;
+
   const ScheduleCard(
-      {required this.month,
+      {required this.year,
+      required this.month,
       required this.day,
-      required this.startTime,
-      required this.endTime,
+      // required this.startTime,
+      // required this.endTime,
       required this.content,
+      required this.isEventList,
       super.key});
 
   @override
@@ -34,7 +39,10 @@ class ScheduleCard extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                _Time(startTime: startTime!, endTime: endTime!),
+                if (isEventList)
+                  Text('$year/$month/$day',
+                      style: TextStyle(fontSize: 10, color: Colors.blue[600])),
+                // _Time(startTime: startTime!, endTime: endTime!),
                 const SizedBox(width: 8.0),
                 _Content(content: content!),
               ],
@@ -44,32 +52,32 @@ class ScheduleCard extends StatelessWidget {
   }
 }
 
-class _Time extends StatelessWidget {
-  final int startTime;
-  final int endTime;
+// class _Time extends StatelessWidget {
+//   final int startTime;
+//   final int endTime;
 
-  const _Time({required this.startTime, required this.endTime, super.key});
+//   const _Time({required this.startTime, required this.endTime, super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    final textStyle = TextStyle(
-      fontWeight: FontWeight.w600,
-      color: PRIMARY_COLOR,
-      fontSize: 16,
-    );
+//   @override
+//   Widget build(BuildContext context) {
+//     final textStyle = TextStyle(
+//       fontWeight: FontWeight.w600,
+//       color: PRIMARY_COLOR,
+//       fontSize: 16,
+//     );
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('${startTime.toString().padLeft(2, '0')}:00', style: textStyle),
-        Text('${endTime.toString().padLeft(2, '0')}:00',
-            style: textStyle.copyWith(
-              fontSize: 10.0,
-            )),
-      ],
-    );
-  }
-}
+//     return Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         Text('${startTime.toString().padLeft(2, '0')}:00', style: textStyle),
+//         Text('${endTime.toString().padLeft(2, '0')}:00',
+//             style: textStyle.copyWith(
+//               fontSize: 10.0,
+//             )),
+//       ],
+//     );
+//   }
+// }
 
 class _Content extends StatelessWidget {
   final String content;
@@ -78,6 +86,12 @@ class _Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(child: Text(content));
+    final textStyle = TextStyle(
+      fontWeight: FontWeight.w400,
+      color: Colors.blue[800],
+      fontSize: 15,
+    );
+    return Expanded(
+        child: Text(content, style: textStyle.copyWith(fontSize: 15.0)));
   }
 }

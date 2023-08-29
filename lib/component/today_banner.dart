@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:joanda0/const/colors.dart';
 
 class TodayBanner extends StatelessWidget {
   final DateTime selectedDate;
@@ -16,7 +15,7 @@ class TodayBanner extends StatelessWidget {
       fontSize: 16,
     );
     return Container(
-      color: PRIMARY_COLOR,
+      color: Theme.of(context).colorScheme.onSecondary,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
         child: Row(

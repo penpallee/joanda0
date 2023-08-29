@@ -27,9 +27,11 @@ class CustomTextField extends StatelessWidget {
           style: TextStyle(
               fontSize: 12, color: PRIMARY_COLOR, fontWeight: FontWeight.w600),
         ),
+        SizedBox(height: 3.0),
         Expanded(
             flex: isTime ? 0 : 1,
             child: TextFormField(
+                style: TextStyle(fontSize: 24, color: Colors.blue[900]),
                 onSaved: onSaved,
                 validator: validator,
                 controller: textEditingController,
@@ -41,9 +43,12 @@ class CustomTextField extends StatelessWidget {
                 inputFormatters:
                     isTime ? [FilteringTextInputFormatter.digitsOnly] : [],
                 decoration: InputDecoration(
-                  border: InputBorder.none,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                    borderSide: BorderSide.none,
+                  ),
                   filled: true,
-                  fillColor: Colors.grey[300],
+                  fillColor: Colors.white30,
                   suffixText: isTime ? '시' : null,
                 )))
       ],
