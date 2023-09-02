@@ -1,16 +1,16 @@
 # joanda0
 
-A new Flutter project.
+간단하게 설명드리자면 여자친구와 저만 쓸수있는 일정관리앱을 만들었습니다.
+평소에 생활하면서 여자친구와 가장 많은 시간을 같이 쓰는게 서로 일정을 묻고 조정하고 변경하는 일인데,
+그 많은 시간을 쏟는 일인 일정관리에 private한 앱을 만들수 있다면 좋을것 같아서 진행하게 되었습니다.
 
-## Getting Started
+대략적인 구조는
+총 3개의 스크린으로 구성되어 있고
 
-This project is a starting point for a Flutter application.
+#1 가장 먼저 여자친구와 저의 액자느낌의 화면에 커플사진을 올릴수있는 main화면
 
-A few resources to get you started if this is your first Flutter project:
+#2 Calendar Screen으로서 table_calendar library를 사용한 화면으로 colorscheme을 사용해서 color를 전체적으로 통일감있으면서 느낌있게 주려 노력했고,
+firestore와 연동하여 streambuilder를 사용하여 실시간으로 일정을 추가, 삭제 할 수 있도록 구성했습니다.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# List Screen으로서 streambilder를 사용해서 calendar screen에서 추가한 일정을 전체적으로 볼수있는 화면과 현재날짜를 참고하여 현재의 달과 매칭되는 달을 필터링하여
+해당달에 있는 일정을 보여주는 화면으로 구성했습니다.
