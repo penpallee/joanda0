@@ -148,7 +148,7 @@ class _DDay extends StatelessWidget {
             style: TextStyle(fontSize: 15),
           ),
           SizedBox(
-            height: 30,
+            height: 20,
           ),
         ],
       ),
