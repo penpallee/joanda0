@@ -7,10 +7,12 @@
 대략적인 구조는
 총 3개의 스크린으로 구성되어 있고
 
-#1 가장 먼저 여자친구와 저의 액자느낌의 화면에 커플사진을 올릴수있는 main화면
+1. 가장 먼저 여자친구와 저의 액자느낌의 화면에 커플사진을 올릴수있는 main화면
 
-#2 Calendar Screen으로서 table_calendar library를 사용한 화면으로 colorscheme을 사용해서 color를 전체적으로 통일감있으면서 느낌있게 주려 노력했고,
-firestore와 연동하여 streambuilder를 사용하여 실시간으로 일정을 추가, 삭제 할 수 있도록 구성했습니다.
+2. Calendar Screen으로서 table_calendar library를 사용한 화면으로 colorscheme을 사용해서 color를 전체적으로 통일감있으면서 느낌있게 주려 노력했고,
+firestore와 연동하여 streambuilder를 사용하여 실시간으로 일정을 추가, 삭제 할 수 있도록 구성했습니다
 
-# List Screen으로서 streambilder를 사용해서 calendar screen에서 추가한 일정을 전체적으로 볼수있는 화면과 현재날짜를 참고하여 현재의 달과 매칭되는 달을 필터링하여
+3. List Screen으로서 streambilder를 사용해서 calendar screen에서 추가한 일정을 전체적으로 볼수있는 화면과 현재날짜를 참고하여 현재의 달과 매칭되는 달을 필터링하여
 해당달에 있는 일정을 보여주는 화면으로 구성했습니다.
+
+
