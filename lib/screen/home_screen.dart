@@ -52,8 +52,10 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(
-                height: 35,
+              Expanded(
+                child: SizedBox(
+                  height: 35,
+                ),
               ),
               _CoupleImage(),
               _DDay(
