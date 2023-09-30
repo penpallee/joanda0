@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:joanda0/component/schedule_card.dart';
 import 'package:joanda0/model/schedule_model.dart';
@@ -124,7 +125,11 @@ class _DayList extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
-          .collection('schedule')
+          .collection(
+            'groups',
+          )
+          .doc('wjubczjrybOhkE8HiAhV')
+          .collection('schedules')
           // .where('date', isGreaterThanOrEqualTo: DateTime.now())
           .orderBy('date', descending: false)
           .snapshots(),
@@ -191,7 +196,11 @@ class _MonthList extends StatelessWidget {
     var endDate = '$year$formattedMonth' + '31'; // 20231131
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
-          .collection('schedule')
+          .collection(
+            'groups',
+          )
+          .doc('wjubczjrybOhkE8HiAhV')
+          .collection('schedules')
           .orderBy('date', descending: false)
           .where('date', isGreaterThanOrEqualTo: startDate)
           .where('date', isLessThanOrEqualTo: endDate)
