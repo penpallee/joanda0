@@ -42,11 +42,11 @@ dependencies:
   # get_it: ^7.6.0
   # sqflite: ^2.2.8+4
   firebase_core: ^2.15.0
-  cloud_firestore: ^4.8.3
+  cloud_firestore: ^4.9.2
   uuid: ^3.0.7
   change_app_package_name: ^1.1.0
   image_picker: ^1.0.1
-  firebase_auth: ^4.9.0
+  firebase_auth: ^4.10.0
   google_sign_in: ^6.1.5
 
 dev_dependencies:

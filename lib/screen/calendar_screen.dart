@@ -6,6 +6,7 @@ import 'package:joanda0/component/schedule_card.dart';
 import 'package:joanda0/component/today_banner.dart';
 import 'package:joanda0/model/schedule_model.dart';
 import 'package:joanda0/screen/home_screen.dart';
+import 'package:joanda0/screen/invitation_screen.dart';
 import 'package:joanda0/screen/list_screen.dart';
 import 'package:uuid/uuid.dart';
 
@@ -32,45 +33,19 @@ class _CalendarScreenState extends State<CalendarScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
-    // scheduleList = [];
   }
-
-  // void addSchedule(ScheduleCard? scheduleCard) {
-  //   setState(() {
-  //     CalendarScreen.scheduleList.add(scheduleCard!);
-  //     // CalendarScreen.scheduleList.sort();
-  //   });
-  // }
 
   void onSavedPressedbtn() async {
     GlobalKey<FormState> gFormkey = ScheduleBottomSheet.formKey;
     if (gFormkey.currentState!.validate()) {
       gFormkey.currentState!.save();
-
-      // await GetIt.I<LocalDatabase>().createSchedule(SchedulesCompanion(
-      //     startTime: drift.Value(int.parse(startTimeController.text)),
-      //     endTime: drift.Value(int.parse(endTimeController.text)),
-      //     content: drift.Value(contentController.text),
-      //     date: drift.Value(selectedDate)));
     }
     final Schedule = ScheduleModel(
       id: Uuid().v4(),
       content: contentController.text,
       date: selectedDate,
-      // startTime: int.parse(startTimeController.text),
-      // endTime: int.parse(endTimeController.text),
     );
 
-    // addSchedule(ScheduleCard(
-    //     month: selectedDate.month,
-    //     day: selectedDate.day,
-    //     startTime: int.parse(startTimeController.text),
-    //     endTime: int.parse(endTimeController.text),
-    //     content: '${contentController.text}'));
-    // startTimeController.clear();
-    // endTimeController.clear();
-    // contentController.clear();
     Navigator.pop(context);
 
     await FirebaseFirestore.instance
@@ -126,8 +101,10 @@ class _CalendarScreenState extends State<CalendarScreen> {
             StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
                     .collection(
-                      'schedule',
+                      'groups',
                     )
+                    .doc('wjubczjrybOhkE8HiAhV')
+                    .collection('schedules')
                     .where('date',
                         isEqualTo:
                             '${selectedDate.year}${selectedDate.month.toString().padLeft(2, '0')}${selectedDate.day.toString().padLeft(2, '0')}')
@@ -149,8 +126,10 @@ class _CalendarScreenState extends State<CalendarScreen> {
                 child: StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance
                   .collection(
-                    'schedule',
+                    'groups',
                   )
+                  .doc('wjubczjrybOhkE8HiAhV')
+                  .collection('schedules')
                   .where('date',
                       isEqualTo:
                           '${selectedDate.year}${selectedDate.month.toString().padLeft(2, '0')}${selectedDate.day.toString().padLeft(2, '0')}')
@@ -219,8 +198,6 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                   year: schedule.date.year,
                                   month: schedule.date.month,
                                   day: schedule.date.day,
-                                  // startTime: schedule.startTime,
-                                  // endTime: schedule.endTime,
                                   content: schedule.content,
                                 )),
                           );
@@ -247,15 +224,17 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   ),
                 );
                 break;
-              // case 1:
-              //   Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //       builder: (context) => CalendarScreen(),
-              //     ),
-              //   );
-              //   break;
               case 1:
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => InvitationScreen(),
+                  ),
+                );
+                // _sendInvitation();
+// invitation code
+                break;
+              case 2:
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -274,10 +253,10 @@ class _CalendarScreenState extends State<CalendarScreen> {
               label: 'Heart',
               tooltip: 'Heart',
             ),
-            // BottomNavigationBarItem(
-            //     icon: Icon(Icons.calendar_today),
-            //     label: 'Calendar',
-            //     tooltip: 'Calendar'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.group_add),
+                label: 'Invitation',
+                tooltip: 'Invitation'),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.category_rounded,

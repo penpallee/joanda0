@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:joanda0/component/cloud_firestore.dart';
 import 'package:joanda0/component/main_calendar.dart';
 import 'package:joanda0/screen/calendar_screen.dart';
 
@@ -112,6 +113,28 @@ class _HomeScreenState extends State<HomeScreen> {
     );
 
     setState(() {});
+  }
+
+  Future<void> createGroupAndInvitation() async {
+    String userId = "현재 사용자 ID"; // 현재 사용자 ID를 가져와야 합니다.
+    try {
+      String groupId = await GroupService().createGroupAndInvitation(userId);
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Invitation Code'),
+          content: Text('Your invitation code is $groupId'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text('OK'),
+            ),
+          ],
+        ),
+      );
+    } catch (e) {
+      print(e);
+    }
   }
 }
 
