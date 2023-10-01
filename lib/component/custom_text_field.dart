@@ -24,10 +24,10 @@ class CustomTextField extends StatelessWidget {
       children: [
         Text(
           label,
-          style: TextStyle(
+          style: const TextStyle(
               fontSize: 12, color: PRIMARY_COLOR, fontWeight: FontWeight.w600),
         ),
-        SizedBox(height: 3.0),
+        const SizedBox(height: 3.0),
         Expanded(
             flex: isTime ? 0 : 1,
             child: TextFormField(

@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:joanda0/component/provider.dart';
 import 'package:joanda0/component/schedule_card.dart';
 import 'package:joanda0/model/schedule_model.dart';
+import 'package:provider/provider.dart';
 
 class ListScreen extends StatelessWidget {
   const ListScreen({super.key});
@@ -14,11 +15,11 @@ class ListScreen extends StatelessWidget {
       child: Scaffold(
           backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
           appBar: AppBar(
-            title: Text(
+            title: const Text(
               'Event List',
               textAlign: TextAlign.center,
             ),
-            bottom: TabBar(
+            bottom: const TabBar(
               // controller: TabController(length: 3, vsync: ScaffoldState()),
               tabs: [
                 Tab(icon: Icon(Icons.calendar_view_day), text: "All List"),
@@ -30,7 +31,7 @@ class ListScreen extends StatelessWidget {
             ),
             backgroundColor: Theme.of(context).colorScheme.onSecondary,
           ),
-          body: TabBarView(
+          body: const TabBarView(
             children: [
               _DayList(),
               // Icon(Icons.search),
@@ -128,14 +129,14 @@ class _DayList extends StatelessWidget {
           .collection(
             'groups',
           )
-          .doc('wjubczjrybOhkE8HiAhV')
+          .doc(Provider.of<GroupIdProvider>(context, listen: false).groupId)
           .collection('schedules')
           // .where('date', isGreaterThanOrEqualTo: DateTime.now())
           .orderBy('date', descending: false)
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return Text('Something went wrong');
+          return const Text('Something went wrong');
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -151,7 +152,7 @@ class _DayList extends StatelessWidget {
             .toList();
         if (snapshot.hasData) {
           return ListView.builder(
-              padding: EdgeInsets.only(top: 12.0),
+              padding: const EdgeInsets.only(top: 12.0),
               itemCount: schedules.length,
               itemBuilder: (context, index) {
                 final schedule = schedules[index];
@@ -174,7 +175,7 @@ class _DayList extends StatelessWidget {
                 );
               });
         } else {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(semanticsLabel: 'Loading'),
           );
         }
@@ -199,7 +200,7 @@ class _MonthList extends StatelessWidget {
           .collection(
             'groups',
           )
-          .doc('wjubczjrybOhkE8HiAhV')
+          .doc(Provider.of<GroupIdProvider>(context, listen: false).groupId)
           .collection('schedules')
           .orderBy('date', descending: false)
           .where('date', isGreaterThanOrEqualTo: startDate)
@@ -207,7 +208,7 @@ class _MonthList extends StatelessWidget {
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return Text('Something went wrong');
+          return const Text('Something went wrong');
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -223,7 +224,7 @@ class _MonthList extends StatelessWidget {
             .toList();
         if (snapshot.hasData) {
           return ListView.builder(
-              padding: EdgeInsets.only(top: 12.0),
+              padding: const EdgeInsets.only(top: 12.0),
               itemCount: schedules.length,
               itemBuilder: (context, index) {
                 final schedule = schedules[index];
@@ -246,7 +247,7 @@ class _MonthList extends StatelessWidget {
                 );
               });
         } else {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(semanticsLabel: 'Loading'),
           );
         }

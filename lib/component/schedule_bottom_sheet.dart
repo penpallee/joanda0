@@ -10,7 +10,7 @@ class ScheduleBottomSheet extends StatefulWidget {
   final VoidCallback onSavedPressedbtn;
   static final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  ScheduleBottomSheet(
+  const ScheduleBottomSheet(
       {required this.startTimeController,
       required this.endTimeController,
       required this.contentController,
@@ -41,7 +41,7 @@ class _ScheduleBottomSheetState extends State<ScheduleBottomSheet> {
             padding:
                 EdgeInsets.only(left: 8, right: 8, top: 8, bottom: bottomInset),
             child: Column(children: [
-              Row(
+              const Row(
                   // children: [
                   //   Expanded(
                   //     child: CustomTextField(
@@ -67,7 +67,7 @@ class _ScheduleBottomSheetState extends State<ScheduleBottomSheet> {
                   //   ),
                   // ],
                   ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Expanded(
                 child: CustomTextField(
                   onSaved: (String? val) {
@@ -83,10 +83,8 @@ class _ScheduleBottomSheetState extends State<ScheduleBottomSheet> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: widget.onSavedPressedbtn,
-                  child: Text('Save'),
-                  style: ElevatedButton.styleFrom(
-                    primary: PRIMARY_COLOR,
-                  ),
+                  style: ElevatedButton.styleFrom(),
+                  child: const Text('Save'),
                 ),
               )
             ]),

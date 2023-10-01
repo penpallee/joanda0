@@ -41,7 +41,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
       gFormkey.currentState!.save();
     }
     final Schedule = ScheduleModel(
-      id: Uuid().v4(),
+      id: const Uuid().v4(),
       content: contentController.text,
       date: selectedDate,
     );
@@ -61,7 +61,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.onSecondary,
-          title: Text('Calendar'),
+          title: const Text('Calendar'),
           centerTitle: true,
         ),
         // backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
@@ -77,8 +77,8 @@ class _CalendarScreenState extends State<CalendarScreen> {
                     contentController: contentController,
                     onSavedPressedbtn: onSavedPressedbtn));
           },
-          child: Icon(Icons.add),
           backgroundColor: Theme.of(context).colorScheme.onBackground,
+          child: const Icon(Icons.add),
         ),
         // backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
         body: SafeArea(
@@ -86,7 +86,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
           children: [
             MainCalendar(
               selectedDate: selectedDate,
-              onDaySelected: OnDaySelected,
+              onDaySelected: onDaySelected,
               focusedDay: focusedDay,
             ),
             Container(
@@ -136,7 +136,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   .snapshots(),
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
-                  return Text('Something went wrong');
+                  return const Text('Something went wrong');
                 }
 
                 if (snapshot.connectionState == ConnectionState.waiting) {
@@ -153,7 +153,6 @@ class _CalendarScreenState extends State<CalendarScreen> {
                     )
                     .toList();
                 if (snapshot.hasData) {
-                  print(schedules.length);
                   return Container(
                     color: Theme.of(context).colorScheme.onPrimaryContainer,
                     child: ListView.builder(
@@ -173,18 +172,18 @@ class _CalendarScreenState extends State<CalendarScreen> {
                               return showDialog(
                                 context: context,
                                 builder: (context) => AlertDialog(
-                                  title: Text('확인'),
-                                  content: Text('정말로 이 항목을 제거하시겠습니까?'),
+                                  title: const Text('확인'),
+                                  content: const Text('정말로 이 항목을 제거하시겠습니까?'),
                                   actions: [
                                     TextButton(
                                       onPressed: () =>
                                           Navigator.of(context).pop(false),
-                                      child: Text('취소'),
+                                      child: const Text('취소'),
                                     ),
                                     TextButton(
                                       onPressed: () =>
                                           Navigator.of(context).pop(true),
-                                      child: Text('확인'),
+                                      child: const Text('확인'),
                                     ),
                                   ],
                                 ),
@@ -204,7 +203,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                         }),
                   );
                 } else {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(semanticsLabel: 'Loading'),
                   );
                 }
@@ -220,7 +219,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => HomeScreen(),
+                    builder: (context) => const HomeScreen(),
                   ),
                 );
                 break;
@@ -238,7 +237,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ListScreen(),
+                    builder: (context) => const ListScreen(),
                   ),
                 );
                 break;
@@ -275,13 +274,10 @@ class _CalendarScreenState extends State<CalendarScreen> {
         ));
   }
 
-  void OnDaySelected(DateTime selectedDate, DateTime focusedDay) {
+  void onDaySelected(DateTime selectedDate, DateTime focusedDay) {
     setState(() {
       this.selectedDate = selectedDate;
       this.focusedDay = focusedDay;
-      print(
-          '${selectedDate.year}${selectedDate.month.toString().padLeft(2, '0')}${selectedDate.day.toString().padLeft(2, '0')}');
-      print(focusedDay);
     });
   }
 }

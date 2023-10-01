@@ -1,7 +1,5 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:joanda0/component/cloud_firestore.dart';
@@ -53,12 +51,12 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Expanded(
+              const Expanded(
                 child: SizedBox(
                   height: 35,
                 ),
               ),
-              _CoupleImage(),
+              const _CoupleImage(),
               _DDay(
                 onHeartPressed: onHeartPressed,
                 firstDay: FIRST_DAY,
@@ -70,13 +68,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         'Since',
                         style: TextStyle(fontSize: 12),
                       ),
                       Text(
                         '${FIRST_DAY.year}.${FIRST_DAY.month}.${FIRST_DAY.day}',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 12,
                         ),
                       )
@@ -108,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => CalendarScreen(),
+        builder: (context) => const CalendarScreen(),
       ),
     );
 
@@ -122,12 +120,12 @@ class _HomeScreenState extends State<HomeScreen> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Invitation Code'),
+          title: const Text('Invitation Code'),
           content: Text('Your invitation code is $groupId'),
           actions: <Widget>[
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text('OK'),
+              child: const Text('OK'),
             ),
           ],
         ),
@@ -156,23 +154,23 @@ class _DDay extends StatelessWidget {
           // SizedBox(height: 20),
           Text(
             'D+${DateTime(now.year, now.month, now.day).difference(firstDay).inDays + 1}',
-            style: TextStyle(fontSize: 20),
+            style: const TextStyle(fontSize: 20),
           ),
           // const SizedBox(height: 8),
           IconButton(
             iconSize: 50,
             onPressed: onHeartPressed,
-            icon: Icon(Icons.favorite_border, color: Colors.redAccent),
+            icon: const Icon(Icons.favorite_border, color: Colors.redAccent),
           ),
-          Text(
+          const Text(
             '항상 곁에 있을게요, 사랑해요.',
             style: TextStyle(fontSize: 15),
           ),
-          Text(
+          const Text(
             '같이 행복하자구요',
             style: TextStyle(fontSize: 15),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
         ],
@@ -198,9 +196,7 @@ class _CoupleImageState extends State<_CoupleImage> {
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
-      } else {
-        print('No image selected.');
-      }
+      } else {}
     });
     saveBackgroundSetting(_image!.path);
   }
@@ -228,7 +224,6 @@ class _CoupleImageState extends State<_CoupleImage> {
         .collection('backgroundSettings')
         .doc('123')
         .get();
-    print(doc.data()?['imageUrl'] as String?);
     return doc.data()?['imageUrl'] as String?;
     // }
     // return null;
@@ -250,7 +245,7 @@ class _CoupleImageState extends State<_CoupleImage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(bottom: 50),
+      padding: const EdgeInsets.only(bottom: 50),
       color: Theme.of(context).colorScheme.primary,
       child: TextButton(
         onPressed: () {},
@@ -259,8 +254,8 @@ class _CoupleImageState extends State<_CoupleImage> {
         },
         child: _image == null
             ? Container(
-                margin: EdgeInsets.all(0),
-                padding: EdgeInsets.all(0),
+                margin: const EdgeInsets.all(0),
+                padding: const EdgeInsets.all(0),
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: Theme.of(context)

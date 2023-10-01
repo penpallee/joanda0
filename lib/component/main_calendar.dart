@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:joanda0/component/cloud_firestore.dart';
+import 'package:joanda0/component/provider.dart';
 import 'package:joanda0/model/schedule_model.dart';
-import 'package:joanda0/screen/home_screen.dart';
+import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class MainCalendar extends StatefulWidget {
@@ -38,7 +38,7 @@ class _MainCalendarState extends State<MainCalendar> {
         .collection(
           'groups',
         )
-        .doc(groupId)
+        .doc(Provider.of<GroupIdProvider>(context, listen: false).groupId)
         .collection('schedules')
         .orderBy('date')
         .get();

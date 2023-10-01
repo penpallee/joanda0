@@ -6,6 +6,8 @@ import 'package:uuid/uuid.dart';
 class InvitationScreen extends StatelessWidget {
   final _inviteCodeController = TextEditingController();
 
+  InvitationScreen({super.key});
+
   Future<void> _acceptInvitation(
       String inviteCode, BuildContext context) async {
     // 초대 코드를 이용하여 초대 정보 찾기
@@ -18,12 +20,12 @@ class InvitationScreen extends StatelessWidget {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('fail'),
-          content: Text('fail'),
+          title: const Text('fail'),
+          content: const Text('fail'),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text('확인'),
+              child: const Text('확인'),
             ),
           ],
         ),
@@ -58,7 +60,7 @@ class InvitationScreen extends StatelessWidget {
 
   Future<void> _sendInvitation(BuildContext context) async {
     // 초대 코드 생성
-    String inviteCode = Uuid().v4();
+    String inviteCode = const Uuid().v4();
 
     // 초대 코드를 Firestore에 저장
     String currentUserId = FirebaseAuth.instance.currentUser!.uid;
@@ -74,12 +76,12 @@ class InvitationScreen extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('초대 코드'),
+        title: const Text('초대 코드'),
         content: Text(inviteCode),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: Text('확인'),
+            child: const Text('확인'),
           ),
         ],
       ),
@@ -90,7 +92,7 @@ class InvitationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Input Invitation Code'),
+          title: const Text('Input Invitation Code'),
         ),
         body: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -99,20 +101,20 @@ class InvitationScreen extends StatelessWidget {
               ...[
                 TextField(
                   controller: _inviteCodeController,
-                  decoration: InputDecoration(labelText: '초대 코드'),
+                  decoration: const InputDecoration(labelText: '초대 코드'),
                 ),
                 ElevatedButton(
                   onPressed: () {
                     _acceptInvitation(_inviteCodeController.text, context);
                   },
-                  child: Text('초대 수락'),
+                  child: const Text('초대 수락'),
                 ),
               ],
               ElevatedButton(
                 onPressed: () {
                   _sendInvitation(context);
                 },
-                child: Text('Create Invitation Code'),
+                child: const Text('Create Invitation Code'),
               ),
             ])));
   }

@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (email.isEmpty || password.isEmpty) {
       // 이메일과 비밀번호가 모두 입력되었는지 확인
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('이메일과 비밀번호를 입력해주세요.')));
+          .showSnackBar(SnackBar(content: const Text('이메일과 비밀번호를 입력해주세요.')));
       return;
     }
     try {
@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => HomeScreen(),
+            builder: (context) => const HomeScreen(),
           ),
         );
       } else {
@@ -68,15 +68,15 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             TextField(
               controller: _emailController,
-              decoration: InputDecoration(labelText: '이메일'),
+              decoration: const InputDecoration(labelText: '이메일'),
               keyboardType: TextInputType.emailAddress,
             ),
             TextField(
               controller: _passwordController,
-              decoration: InputDecoration(labelText: '비밀번호'),
+              decoration: const InputDecoration(labelText: '비밀번호'),
               obscureText: true,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _submit,
               child: Text(_isLogin ? '로그인' : '회원가입'),
