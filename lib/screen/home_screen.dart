@@ -39,67 +39,54 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        // appBar: AppBar(
-        //   title: Text("data"),
-        // ),
+      backgroundColor: Theme.of(context).colorScheme.primary,
+      // appBar: AppBar(
+      //   title: Text("data"),
+      // ),
 
-        body: SafeArea(
-          top: true,
-          bottom: true,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: SafeArea(
+        top: true,
+        bottom: true,
+        child: Column(
+            // mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Expanded(
-                child: SizedBox(
-                  height: 35,
-                ),
-              ),
+              // SizedBox(
+              //   height: 5,
+              // ),
               const _CoupleImage(),
-              _DDay(
-                onHeartPressed: onHeartPressed,
-                firstDay: FIRST_DAY,
-              ),
-              Container(
-                color: Colors.black.withOpacity(0.8),
-                child: SizedBox(
-                  height: 45,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Since',
-                        style: TextStyle(fontSize: 12),
-                      ),
-                      Text(
-                        '${FIRST_DAY.year}.${FIRST_DAY.month}.${FIRST_DAY.day}',
-                        style: const TextStyle(
-                          fontSize: 12,
-                        ),
-                      )
-                    ],
-                  ),
+              Expanded(
+                child: _DDay(
+                  onHeartPressed: onHeartPressed,
+                  firstDay: FIRST_DAY,
                 ),
-              )
-            ],
-          ),
-        ));
-  }
+              ),
+              Column(
+                // color: Colors.black.withOpacity(0.8),
+                // child: SizedBox(
+                // height: 35,
+                // child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  const Text(
+                    'Since',
+                    style: TextStyle(fontSize: 12),
+                  ),
+                  Text(
+                    '${FIRST_DAY.year}.${FIRST_DAY.month}.${FIRST_DAY.day}',
+                    style: const TextStyle(
+                      fontSize: 12,
+                    ),
+                  )
+                ],
 
-  // Future<String?> getBackgroundSetting() async {
-  //   //현재 로그인한 사용자 가져오기
-  //   // if (user != null) {
-  //   final doc = await FirebaseFirestore.instance
-  //       .collection('backgroundSettings')
-  //       .doc('123')
-  //       .get();
-  //   print(123);
-  //   print(doc.data()?['imageUrl'] as String?);
-  //   return doc.data()?['imageUrl'] as String?;
-  //   // }
-  //   // return null;
-  // }
+                // ),
+              ),
+            ]),
+      ),
+    );
+  }
 
   void onHeartPressed() {
     // print('123');
@@ -140,16 +127,15 @@ class _DDay extends StatelessWidget {
   final GestureTapCallback onHeartPressed;
   final DateTime firstDay;
 
-  const _DDay(
-      {required this.onHeartPressed, required this.firstDay, super.key});
+  const _DDay({required this.onHeartPressed, required this.firstDay});
 
   @override
   Widget build(BuildContext context) {
     final now = DateTime.now();
     return Container(
-      // color: Colors.redAccent.withOpacity(0.4),
+      color: Colors.redAccent.withOpacity(0.4),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // SizedBox(height: 20),
           Text(
@@ -180,7 +166,7 @@ class _DDay extends StatelessWidget {
 }
 
 class _CoupleImage extends StatefulWidget {
-  const _CoupleImage({super.key});
+  const _CoupleImage();
 
   @override
   State<_CoupleImage> createState() => _CoupleImageState();
@@ -210,7 +196,8 @@ class _CoupleImageState extends State<_CoupleImage> {
 
   Future<void> _loadBackground() async {
     String? imageUrl = await getBackgroundSetting();
-    if (imageUrl != null) {
+
+    if (await File(imageUrl!).exists()) {
       setState(() {
         _image = File(imageUrl);
       });
@@ -245,7 +232,7 @@ class _CoupleImageState extends State<_CoupleImage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(bottom: 50),
+      padding: const EdgeInsets.only(bottom: 20),
       color: Theme.of(context).colorScheme.primary,
       child: TextButton(
         onPressed: () {},
@@ -261,20 +248,23 @@ class _CoupleImageState extends State<_CoupleImage> {
                     color: Theme.of(context)
                         .colorScheme
                         .onPrimaryContainer, // 테두리 색상
-                    width: 8.0,
+                    width: 0,
                   ),
                 ), // 테두리 두께
-                child: Image.asset(
-                  'asset/img/middle_image.png',
-                  height: MediaQuery.of(context).size.height * 0.7,
-                  width: MediaQuery.of(context).size.width,
-                ),
+                child: Image.asset('asset/img/middle_image.png',
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    width: MediaQuery.of(context).size.width,
+                    cacheWidth: 996,
+                    cacheHeight: 1402,
+                    fit: BoxFit.cover),
               )
             : Image.file(
                 _image!,
-                height: MediaQuery.of(context).size.height * 0.6,
+                height: MediaQuery.of(context).size.height * 0.5,
                 width: MediaQuery.of(context).size.width,
                 fit: BoxFit.cover,
+                cacheWidth: 996,
+                cacheHeight: 1635,
               ),
       ),
     );
