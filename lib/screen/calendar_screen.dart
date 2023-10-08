@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:joanda0/component/main_calendar.dart';
+import 'package:joanda0/component/provider.dart';
 import 'package:joanda0/component/schedule_bottom_sheet.dart';
 import 'package:joanda0/component/schedule_card.dart';
 import 'package:joanda0/component/today_banner.dart';
@@ -8,6 +9,7 @@ import 'package:joanda0/model/schedule_model.dart';
 import 'package:joanda0/screen/home_screen.dart';
 import 'package:joanda0/screen/invitation_screen.dart';
 import 'package:joanda0/screen/list_screen.dart';
+import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 class CalendarScreen extends StatefulWidget {
@@ -49,7 +51,11 @@ class _CalendarScreenState extends State<CalendarScreen> {
     Navigator.pop(context);
 
     await FirebaseFirestore.instance
-        .collection('schedule')
+        .collection(
+          'groups',
+        )
+        .doc(Provider.of<GroupIdProvider>(context, listen: false).groupId)
+        .collection('schedules')
         .doc(Schedule.id)
         .set(Schedule.toJson());
 
@@ -59,11 +65,11 @@ class _CalendarScreenState extends State<CalendarScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.onSecondary,
-          title: const Text('Calendar'),
-          centerTitle: true,
-        ),
+        // appBar: AppBar(
+        //   backgroundColor: Theme.of(context).colorScheme.onSecondary,
+        //   title: const Text('Calendar'),
+        //   centerTitle: true,
+        // ),
         // backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
         floatingActionButton: FloatingActionButton(
           onPressed: () {
@@ -93,17 +99,17 @@ class _CalendarScreenState extends State<CalendarScreen> {
                 color: Theme.of(context).colorScheme.onPrimaryContainer,
                 child: SizedBox(
                   height: 16,
-                  child: Expanded(
-                      child: Container(
+                  child: Container(
                     color: Theme.of(context).colorScheme.onPrimaryContainer,
-                  )),
+                  ),
                 )),
             StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
                     .collection(
                       'groups',
                     )
-                    .doc('wjubczjrybOhkE8HiAhV')
+                    .doc(Provider.of<GroupIdProvider>(context, listen: false)
+                        .groupId)
                     .collection('schedules')
                     .where('date',
                         isEqualTo:
@@ -115,20 +121,18 @@ class _CalendarScreenState extends State<CalendarScreen> {
                     count: snapshot.data?.docs.length ?? 0,
                   );
                 }),
-            SizedBox(
-              height: 16,
-              child: Expanded(
-                  child: Container(
-                color: Theme.of(context).colorScheme.onPrimaryContainer,
-              )),
-            ),
+            Expanded(
+                child: Container(
+              color: Theme.of(context).colorScheme.onPrimaryContainer,
+            )),
             Expanded(
                 child: StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance
                   .collection(
                     'groups',
                   )
-                  .doc('wjubczjrybOhkE8HiAhV')
+                  .doc(Provider.of<GroupIdProvider>(context, listen: false)
+                      .groupId)
                   .collection('schedules')
                   .where('date',
                       isEqualTo:
@@ -164,7 +168,13 @@ class _CalendarScreenState extends State<CalendarScreen> {
                             direction: DismissDirection.startToEnd,
                             onDismissed: (DismissDirection direction) {
                               FirebaseFirestore.instance
-                                  .collection('schedule')
+                                  .collection(
+                                    'groups',
+                                  )
+                                  .doc(Provider.of<GroupIdProvider>(context,
+                                          listen: false)
+                                      .groupId)
+                                  .collection('schedules')
                                   .doc(schedule.id)
                                   .delete();
                             },

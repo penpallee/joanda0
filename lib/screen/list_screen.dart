@@ -37,90 +37,13 @@ class ListScreen extends StatelessWidget {
               // Icon(Icons.search),
               _MonthList(),
             ],
-          )
-          // body: StreamBuilder<QuerySnapshot>(
-          //   stream: FirebaseFirestore.instance
-          //       .collection('schedule')
-          //       .orderBy('date', descending: false)
-          //       .snapshots(),
-          //   builder: (context, snapshot) {
-          //     if (snapshot.hasError) {
-          //       return Text('Something went wrong');
-          //     }
-
-          //     if (snapshot.connectionState == ConnectionState.waiting) {
-          //       return Container(
-          //         decoration: BoxDecoration(color: Colors.black.withOpacity(0.5)),
-          //       );
-          //     }
-          //     final schedules = snapshot.data!.docs
-          //         .map(
-          //           (QueryDocumentSnapshot e) => ScheduleModel.fromJson(
-          //               json: (e.data() as Map<String, dynamic>)),
-          //         )
-          //         .toList();
-          //     if (snapshot.hasData) {
-          //       return ListView.builder(
-          //           padding: EdgeInsets.only(top: 12.0),
-          //           itemCount: schedules.length,
-          //           itemBuilder: (context, index) {
-          //             final schedule = schedules[index];
-          //             return Dismissible(
-          //               key: ObjectKey(schedule.id),
-          //               direction: DismissDirection.startToEnd,
-          //               onDismissed: (DismissDirection direction) {},
-          //               child: Padding(
-          //                   padding: const EdgeInsets.only(
-          //                       bottom: 8.0, left: 8.0, right: 8.0),
-          //                   child: ScheduleCard(
-          //                     month: schedule.date.month,
-          //                     day: schedule.date.day,
-          //                     startTime: schedule.startTime,
-          //                     endTime: schedule.endTime,
-          //                     content: schedule.content,
-          //                   )),
-          //             );
-          //           });
-          //     } else {
-          //       return Center(
-          //         child: CircularProgressIndicator(semanticsLabel: 'Loading'),
-          //       );
-          //     }
-          //   },
-          // ),
-          ),
+          )),
     );
   }
 }
 
-// class _ListViewNav extends StatelessWidget {
-//   const _ListViewNav({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return AppBar(
-//       title: Text('My App'),
-//       actions: [
-//         IconButton(
-//           icon: Icon(Icons.home),
-//           onPressed: () {
-//             // Handle home button press
-//           },
-//         ),
-//         IconButton(
-//           icon: Icon(Icons.search),
-//           onPressed: () {
-//             // Handle search button press
-//           },
-//         ),
-//         // ... other actions
-//       ],
-//     );
-//   }
-// }
-
 class _DayList extends StatelessWidget {
-  const _DayList({super.key});
+  const _DayList();
 
   @override
   Widget build(BuildContext context) {
@@ -131,7 +54,6 @@ class _DayList extends StatelessWidget {
           )
           .doc(Provider.of<GroupIdProvider>(context, listen: false).groupId)
           .collection('schedules')
-          // .where('date', isGreaterThanOrEqualTo: DateTime.now())
           .orderBy('date', descending: false)
           .snapshots(),
       builder: (context, snapshot) {
@@ -185,7 +107,7 @@ class _DayList extends StatelessWidget {
 }
 
 class _MonthList extends StatelessWidget {
-  const _MonthList({super.key});
+  const _MonthList();
 
   @override
   Widget build(BuildContext context) {
@@ -193,8 +115,8 @@ class _MonthList extends StatelessWidget {
     var month = DateTime.now().month;
     var formattedMonth = month < 10 ? '0$month' : '$month'; // 두 자리 형식으로 변환
 
-    var startDate = '$year$formattedMonth' + '01'; // 20231101
-    var endDate = '$year$formattedMonth' + '31'; // 20231131
+    var startDate = '$year$formattedMonth' '01'; // 20231101
+    var endDate = '$year$formattedMonth' '31'; // 20231131
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection(

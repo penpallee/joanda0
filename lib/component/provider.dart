@@ -4,22 +4,35 @@ import 'package:flutter/foundation.dart';
 
 class GroupIdProvider with ChangeNotifier {
   final userId = FirebaseAuth.instance.currentUser!.uid;
-  String _groupId = '';
+  String? _groupId;
+
+  GroupIdProvider() {
+    someFunction();
+  }
 
   Future<String> getGroupId() async {
     final userDoc =
         await FirebaseFirestore.instance.collection('users').doc(userId).get();
-    return userDoc['groupId'];
+    final groupId = userDoc['groupId'];
+    if (groupId == null) {
+      throw Exception('GroupId is null for userId: $userId');
+    }
+    return groupId;
   }
 
   void someFunction() async {
-    final groupId = await getGroupId();
-    _groupId = groupId;
+    try {
+      final groupId = await getGroupId();
+      _groupId = groupId;
+      notifyListeners();
+    } catch (e) {
+      print('Error getting groupId: $e');
+    }
   }
 
-  String get groupId => _groupId;
+  String? get groupId => _groupId;
 
-  set groupId(String value) {
+  set groupId(String? value) {
     _groupId = value;
     notifyListeners();
   }

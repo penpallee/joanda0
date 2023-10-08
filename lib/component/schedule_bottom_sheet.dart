@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:joanda0/component/custom_text_field.dart';
 import 'package:joanda0/component/schedule_card.dart';
-import 'package:joanda0/const/colors.dart';
 
 class ScheduleBottomSheet extends StatefulWidget {
   final TextEditingController startTimeController;
@@ -41,32 +40,7 @@ class _ScheduleBottomSheetState extends State<ScheduleBottomSheet> {
             padding:
                 EdgeInsets.only(left: 8, right: 8, top: 8, bottom: bottomInset),
             child: Column(children: [
-              const Row(
-                  // children: [
-                  //   Expanded(
-                  //     child: CustomTextField(
-                  //         onSaved: (String? val) {
-                  //           startTime = int.parse(val!);
-                  //         },
-                  //         validator: timeValidator,
-                  //         textEditingController: widget.startTimeController,
-                  //         isTime: true,
-                  //         label: 'Start Time'),
-                  //   ),
-                  //   const SizedBox(width: 16),
-                  //   Expanded(
-                  //     child: CustomTextField(
-                  //       onSaved: (String? val) {
-                  //         startTime = int.parse(val!);
-                  //       },
-                  //       validator: timeValidator,
-                  //       textEditingController: widget.endTimeController,
-                  //       isTime: true,
-                  //       label: 'End Time',
-                  //     ),
-                  //   ),
-                  // ],
-                  ),
+              const Row(),
               const SizedBox(height: 8),
               Expanded(
                 child: CustomTextField(
@@ -94,20 +68,10 @@ class _ScheduleBottomSheetState extends State<ScheduleBottomSheet> {
     );
   }
 
-  void onSavePressed() {
-    if (ScheduleBottomSheet.formKey.currentState!.validate()) {
-      ScheduleBottomSheet.formKey.currentState!.save();
-    }
-  }
-
-  // String? timeValidator(String? val) {
-  //   if (val == null || val.isEmpty) {
-  //     return 'Please enter some text';
+  // void onSavePressed() {
+  //   if (ScheduleBottomSheet.formKey.currentState!.validate()) {
+  //     ScheduleBottomSheet.formKey.currentState!.save();
   //   }
-  //   if (int.parse(val) > 24 || int.parse(val) < 0) {
-  //     return 'Please enter valid time';
-  //   }
-  //   return null;
   // }
 
   String? contentValidator(String? val) {

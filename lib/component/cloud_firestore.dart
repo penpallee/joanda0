@@ -21,7 +21,6 @@ class GroupService {
 
     // 사용자 문서에 그룹 ID 저장
     await _userCollection.doc(userId).update({'groupId': groupDoc.id});
-
     return invitationCode;
   }
 

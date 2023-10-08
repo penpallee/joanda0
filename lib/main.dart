@@ -18,7 +18,9 @@ void main() async {
     ChangeNotifierProvider(
       create: (context) => GroupIdProvider(),
       child: MaterialApp(
-          title: 'Jo&A0 diary', theme: joAndAyThemeData, home: LoginScreen()),
+          title: 'Jo&A0 diary',
+          theme: joAndAyThemeData,
+          home: const LoginScreen()),
     ),
   );
 }

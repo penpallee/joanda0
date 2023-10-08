@@ -82,7 +82,7 @@ class ScheduleCard extends StatelessWidget {
 class _Content extends StatelessWidget {
   final String content;
 
-  const _Content({required this.content, super.key});
+  const _Content({required this.content});
 
   @override
   Widget build(BuildContext context) {

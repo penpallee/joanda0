@@ -9,7 +9,7 @@ class TodayBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = TextStyle(
+    const textStyle = TextStyle(
       fontWeight: FontWeight.w600,
       color: Colors.white,
       fontSize: 16,
@@ -27,7 +27,7 @@ class TodayBanner extends StatelessWidget {
             ),
             const SizedBox(width: 8.0),
             Text(
-              '일정 ${count}개',
+              '일정 $count개',
               style: textStyle,
             ),
           ],
