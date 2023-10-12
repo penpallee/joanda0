@@ -18,23 +18,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   MainCalendar? mainCalendar;
   DateTime firstDate = DateTime.now();
-  // String? backgroundImageUrl;
-
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   _loadBackground();
-  // }
-
-  // Future<void> _loadBackground() async {
-  //   String? imageUrl = await getBackgroundSetting();
-  //   if (imageUrl != null) {
-  //     setState(() {
-  //       backgroundImageUrl = imageUrl;
-  //     });
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -55,33 +38,36 @@ class _HomeScreenState extends State<HomeScreen> {
               // SizedBox(
               //   height: 5,
               // ),
-              const _CoupleImage(),
+              Expanded(flex: 3, child: const _CoupleImage()),
               Expanded(
-                child: _DDay(
-                  onHeartPressed: onHeartPressed,
-                  firstDay: FIRST_DAY,
+                flex: 1,
+                child: Container(
+                  color: Colors.transparent,
+                  child: _DDay(
+                    onHeartPressed: onHeartPressed,
+                    firstDay: FIRST_DAY,
+                  ),
                 ),
               ),
-              Column(
-                // color: Colors.black.withOpacity(0.8),
-                // child: SizedBox(
-                // height: 35,
-                // child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  const Text(
-                    'Since',
-                    style: TextStyle(fontSize: 12),
-                  ),
-                  Text(
-                    '${FIRST_DAY.year}.${FIRST_DAY.month}.${FIRST_DAY.day}',
-                    style: const TextStyle(
-                      fontSize: 12,
+              Container(
+                color: Colors.black.withOpacity(0.8),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    const Text(
+                      'Since',
+                      style: TextStyle(fontSize: 12),
                     ),
-                  )
-                ],
+                    Text(
+                      '${FIRST_DAY.year}.${FIRST_DAY.month}.${FIRST_DAY.day}',
+                      style: const TextStyle(
+                        fontSize: 12,
+                      ),
+                    )
+                  ],
 
-                // ),
+                  // ),
+                ),
               ),
             ]),
       ),
@@ -262,7 +248,7 @@ class _CoupleImageState extends State<_CoupleImage> {
                 _image!,
                 height: MediaQuery.of(context).size.height * 0.5,
                 width: MediaQuery.of(context).size.width,
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
                 cacheWidth: 996,
                 cacheHeight: 1635,
               ),
